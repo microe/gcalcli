@@ -466,12 +466,19 @@ class gcalcli:
         for cal in self.allCals:
             if len(calNames):
                 for i in xrange(len(calNames)):
-                    if re.search(calNames[i].lower(), cal['summary'].lower()):
+                    if calNames[i] == cal['summary']:
                         self.cals.append(cal)
-                        cal['colorSpec'] = calNameColors[i]
-            else:
-                self.cals.append(cal)
-                cal['colorSpec'] = None
+
+        if len(self.cals) == 0:
+            for cal in self.allCals:
+                if len(calNames):
+                    for i in xrange(len(calNames)):
+                        if re.search(calNames[i].lower(), cal['summary'].lower()):
+                            self.cals.append(cal)
+                            cal['colorSpec'] = calNameColors[i]
+                else:
+                    self.cals.append(cal)
+                    cal['colorSpec'] = None
 
     @staticmethod
     def _LocalizeDateTime(dt):
