@@ -312,7 +312,7 @@ def dprint(obj):
     try:
         from pprint import pprint
         pprint(obj)
-    except ImportError, e:
+    except ImportError:
         print obj
 
 
@@ -1425,7 +1425,7 @@ class gcalcli:
         eventList = []
 
         queue = Queue()
-        threads = []
+        #threads = []
 
         def worker(cal, work):
             events = work.execute()
@@ -2194,7 +2194,7 @@ def BowChickaWowWow():
 
         if len(args) >= 2:
             try:
-                count = int(args[1])
+                int(args[1])
             except:
                 PrintErrMsg('Error: invalid calw arguments\n')
                 sys.exit(1)
