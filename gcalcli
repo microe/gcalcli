@@ -141,7 +141,8 @@ Usage:
                            - editing is interactive
 
   import [file]            import an ics/vcal file to a calendar
-                           - a single --cal must specified
+                           - a single --cal must be specified (and match only
+                             one calendar)
                            - if a file is not specified then the data is read
                              from standard input
                            - if -v is given then each event in the file is
@@ -1834,7 +1835,7 @@ class gcalcli:
             verbose = True
 
         if not dump and len(self.cals) != 1:
-            PrintErrMsg("Must specify a single calendar\n")
+            PrintErrMsg("Must specify a single calendar. " + str(len(self.cals)) + " specified\n")
             return
 
         f = sys.stdin
